@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../StyleSheets/loginPage.css";
 import { Link } from "react-router-dom";
 // login Component 
-const LoginPage = () => {
+const LoginPage = ({loginType}) => {
     //Function declaration
     // Handle submit 
     const handleSubmit = (e) => {
@@ -26,7 +26,7 @@ const LoginPage = () => {
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit}>
 
-                    <label htmlFor="rollNo" id="rollNoLabel" className="input-label">RollNo</label>
+                    <label htmlFor="rollNo" id="rollNoLabel" className="input-label">{loginType} ID</label>
                     <input
                         autoComplete="off"
                         id="rollNo"
@@ -35,7 +35,7 @@ const LoginPage = () => {
                         value={rollNo}
                         max-length={11}
                         onChange={(e) => setRollNo(checkNumberType(e.target.value))}
-                        placeholder="Enter your Roll No">
+                        placeholder="Enter your ID No">
                     </input>
 
                     <label htmlFor="password" id="password" className="input-label">Password</label>
@@ -49,7 +49,7 @@ const LoginPage = () => {
                     >
                     </input>
                     <button type="submit" className="Login-Button">Login </button>
-                    <p>Don't have an account?  <Link to="/signUp">Sign Up Here </Link></p>
+                    <p>Don't have an account?<Link to="/signUp">Sign Up Here </Link></p>
 
 
                 </form >

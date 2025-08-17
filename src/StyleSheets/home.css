@@ -1,0 +1,23 @@
+.home{
+    width: 350px;
+    margin: 10% auto ;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    flex-wrap: wrap ;
+}
+.home button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px ;
+}
+.home button:hover {
+    background-color: #0056b3;
+}
