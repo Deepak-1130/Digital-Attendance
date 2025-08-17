@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./loginPage";
-import SignUpPage from "./signUpPage";
+import LoginPage from "./Components/loginPage";
+import SignUpPage from "./Components/signUpPage";
 
 function App() {
   return (

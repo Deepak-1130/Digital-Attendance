@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./loginPage.css";
+import "../StyleSheets/loginPage.css";
 import { Link } from "react-router-dom";
 // login Component 
 const LoginPage = () => {
