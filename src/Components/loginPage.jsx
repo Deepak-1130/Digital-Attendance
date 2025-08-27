@@ -49,7 +49,7 @@ const LoginPage = ({loginType}) => {
                     >
                     </input>
                     <button type="submit" className="Login-Button">Login </button>
-                    <p>Don't have an account?<Link to="/signUp">Sign Up Here </Link></p>
+                    <p>Want to change password ?<Link  to="/signUp">Change Password </Link></p>
 
 
                 </form >
