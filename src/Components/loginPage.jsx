@@ -48,8 +48,8 @@ const LoginPage = ({loginType}) => {
                         onChange={(e) => setPassword(e.target.value)}
                     >
                     </input>
-                    <button type="submit" className="Login-Button">Login </button>
-                    <p>Want to change password ?<Link  to="/signUp">Change Password </Link></p>
+                 <Link to="/dashboard"><button type="submit" className="Login-Button">Login </button></Link>   
+                    {/* <p>Want to change password ?<Link  to="/signUp">Change Password </Link></p> */}
 
 
                 </form >
