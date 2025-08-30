@@ -1,25 +1,49 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../StyleSheets/loginPage.css";
 import { Link } from "react-router-dom";
 // login Component 
-const LoginPage = ({loginType}) => {
-    //Function declaration
-    // Handle submit 
+const LoginPage = ({ loginType }) => {
+
+    //Hooks declaration
+    const [rollNo, setRollNo] = useState();
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate();
+ 
+    // Handle submit................................................................................................... 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(password)
         console.log(rollNo)
     }
-    //Number check function 
+ 
+    //Number check function....................................................................................... 
     const checkNumberType = (value) => {
-        
-    return value.replace(/[^0-9]/g, "");
+
+        return value.replace(/[^0-9]/g, "");
     };
-   
-   //State declaration
-    const [rollNo, setRollNo] = useState();
-    const [password, setPassword] = useState("")
+ 
+    //Function declaration.................................................................................................
+    const handleLogin = () => {
+    if(loginType=="Student"){
+        navigate("/Dashboard")}
+    else{
+         navigate("/FacultyDashboard")
+    }    
+        //fetch path not defined so commented--------------------------------------------------------------------------------
+        // fetch("https://" , {
+        //     method:"POST",
+        //     headers: {"content-type":"application/json"},
+        //     body:JSON.stringify({
+        //         rollNo:rollNo,
+        //         password:password
+        //     })
+        // })
+    }
+
+
+
     return (
         <div className="login-page">
             <div className="login-container">
@@ -48,7 +72,7 @@ const LoginPage = ({loginType}) => {
                         onChange={(e) => setPassword(e.target.value)}
                     >
                     </input>
-                 <Link to="/dashboard"><button type="submit" className="Login-Button">Login </button></Link>   
+                    <button type="submit" onClick={handleLogin} className="Login-Button">Login</button>
                     {/* <p>Want to change password ?<Link  to="/signUp">Change Password </Link></p> */}
 
 

@@ -9,7 +9,7 @@
 }
 
 .login-container h2 {
-    margin-bottom: 20px;
+    margin-bottom:20px;
 }
 
 .login-container form {
@@ -33,7 +33,7 @@
 
 .login-container button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #00ff7b;
     color: white;
     font-weight: bold;
     border: none;
@@ -42,5 +42,5 @@
 }
 
 .login-container button:hover {
-    background-color: #0056b3;
+    background-color: #00b345;
 }

@@ -4,6 +4,7 @@ import LoginPage from "./Components/loginPage";
 import { useState } from "react";
 import Home from "./Components/home";
 import Dashboard from "./Components/Dashboard";
+import FacultyDashboard from "./Components/FacultyDashboard";
 function App() {
   const studentDetails={
     name:"Deepak",
@@ -13,14 +14,20 @@ function App() {
     totalClasses:"100",
     Attendance:"85%"
 }
+const FacultyDetails={
+    name:"Visali",
+    papers:2
+}
    //State declaration
     const [loginType, setLoginType] =useState("");
+    // const [studentDetails,setStudentDetails]=useState("");
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home setLoginType={setLoginType} />} />
+      <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails}  />}/>
+       <Route path="/" element={<Home setLoginType={setLoginType}   />} />
       <Route path="/Dashboard" element={<Dashboard studentDetails={studentDetails}/>} />
-      <Route path="/login" element={<LoginPage loginType={loginType}/>}/>
+      <Route path="/login" element={<LoginPage loginType={loginType}/>}/> 
     </Routes>
     </BrowserRouter>
     

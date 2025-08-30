@@ -27,13 +27,12 @@
   font-weight: bold;
   color: #2e86de;
 }
-
-.dashboard .attendance {
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #eaf6ff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #0077cc;
-}
+.dashboard button{
+  padding: 0.2cm;
+  width: 3cm;
+  font-size: 1rem;
+  color:white;
+  background-color: red;
+  border-width: 0px;
+  border-radius: 08px;
+}    
