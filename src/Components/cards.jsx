@@ -1,6 +1,6 @@
 import React from "react";
 import "../StyleSheets/cards.css";
-const Cards = ({paperDetails}) => {
+const Cards = ({paperDetails}) =>{
     return (
         <div className="cards">
             <p>{paperDetails.year}</p>
@@ -8,4 +8,4 @@ const Cards = ({paperDetails}) => {
         </div>
     )
 }
-export default Cards ;
+export default Cards;
