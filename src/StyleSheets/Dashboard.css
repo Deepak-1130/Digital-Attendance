@@ -1,38 +1,71 @@
 /* Dashboard.css */
 
-.dashboard {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 30px;
+
+.fullscreen-dashboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #f9f9f9;
-  border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
 
-.dashboard h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.main-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2e86de;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-message {
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
   color: #2c3e50;
 }
 
-.dashboard p {
+.details-table {
+  width: 350px;
+  margin: 0 auto 2rem auto;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.details-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #eee;
   font-size: 1.1rem;
-  margin: 10px 0;
   color: #444;
 }
-
-.dashboard p span {
-  font-weight: bold;
+.details-table tr:last-child td {
+  border-bottom: none;
+}
+.details-table td:first-child {
+  font-weight: 500;
   color: #2e86de;
 }
-.dashboard button{
-  padding: 0.2cm;
-  width: 3cm;
-  font-size: 1rem;
-  color:white;
-  background-color: red;
-  border-width: 0px;
-  border-radius: 08px;
-}    
+.details-table td:last-child {
+  font-weight: bold;
+  color: #2c3e50;
+}
+.fullscreen-dashboard button {
+  padding: 0.5em 2em;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #e74c3c;
+  border: none;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fullscreen-dashboard button:hover {
+  background-color: #c0392b;
+}
