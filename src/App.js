@@ -6,6 +6,7 @@ import Home from "./Components/home";
 import Dashboard from "./Components/Dashboard";
 import MarkAttendance from "./Components/attendanceTable";
 import FacultyDashboard from "./Components/FacultyDashboard";
+import AdminDashboard from "./Components/admin";
 function App() {
   const studentDetails={
     name:"Deepak",
@@ -27,10 +28,11 @@ const FacultyDetails={
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails} setClassDetails={setClassDetails} />}/>
+      {/* <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails} setClassDetails={setClassDetails} />}/>
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/" element={<LoginPage />}/> 
-      <Route path="markAttendance" element={<MarkAttendance />}/>
+      <Route path="markAttendance" element={<MarkAttendance />}/> */}
+      <Route path="/" element={<AdminDashboard />}/>
     </Routes>
     </BrowserRouter>
     
