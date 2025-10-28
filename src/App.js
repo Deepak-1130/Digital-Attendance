@@ -4,6 +4,7 @@ import LoginPage from "./Components/loginPage";
 import { useState } from "react";
 import Home from "./Components/home";
 import Dashboard from "./Components/Dashboard";
+import MarkAttendance from "./Components/attendanceTable";
 import FacultyDashboard from "./Components/FacultyDashboard";
 function App() {
   const studentDetails={
@@ -20,14 +21,16 @@ const FacultyDetails={
 }
    //State declaration
     const [loginType, setLoginType] =useState("");
+    const [classDetails,setClassDetails]=useState("");
+    // const [FacultyDetails,setFacultyDetails]=useState("");
     // const [studentDetails,setStudentDetails]=useState("");
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails}  />}/>
-       <Route path="/" element={<Home setLoginType={setLoginType}   />} />
-      <Route path="/Dashboard" element={<Dashboard studentDetails={studentDetails}/>} />
-      <Route path="/login" element={<LoginPage loginType={loginType}/>}/> 
+      <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails} setClassDetails={setClassDetails} />}/>
+      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/" element={<LoginPage />}/> 
+      <Route path="markAttendance" element={<MarkAttendance />}/>
     </Routes>
     </BrowserRouter>
     

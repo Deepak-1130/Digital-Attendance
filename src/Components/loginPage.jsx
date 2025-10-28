@@ -1,86 +1,92 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../StyleSheets/loginPage.css";
-import { Link } from "react-router-dom";
-// login Component 
-const LoginPage = ({ loginType }) => {
+import axios from "axios";
 
-    //Hooks declaration
-    const [rollNo, setRollNo] = useState();
-    const [password, setPassword] = useState("")
+const LoginPage = () => {
+    const [userId, setUserId] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
- 
-    // Handle submit................................................................................................... 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(password)
-        console.log(rollNo)
+   const checkNumberType = (value) => {
+        const regex = /^[A-Za-z]+/;
+      return value.replace(regex, ''); 
     }
- 
-    //Number check function....................................................................................... 
-    const checkNumberType = (value) => {
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const res = await axios.post("http://localhost:8080/login", {
+        userId: userId,
+        password: password,
+      });
 
-        return value.replace(/[^0-9]/g, "");
-    };
- 
-    //Function declaration.................................................................................................
-    const handleLogin = () => {
-    if(loginType=="Student"){
-        navigate("/Dashboard")}
-    else{
-         navigate("/FacultyDashboard")
-    }    
-        //fetch path not defined so commented--------------------------------------------------------------------------------
-        // fetch("https://" , {
-        //     method:"POST",
-        //     headers: {"content-type":"application/json"},
-        //     body:JSON.stringify({
-        //         rollNo:rollNo,
-        //         password:password
-        //     })
-        // })
+      const Data = res.data;
+
+      
+      if (Data.role === "Student") {
+        navigate("/Dashboard", { state: { Data } });
+      } else if (Data.role === "Faculty") {
+        navigate("/FacultyDashboard", { state: { Data } });
+      } 
+      else if (Data.role === "HOD"){
+        navigate("/HODDashboard", { state: { Data } });
+      }
+        else {
+        alert("Invalid user role!");
+      }
+
+    } 
+    catch (error) {
+      console.error("Login failed:", error);
+      alert("Login failed! Please check your credentials or server.");
     }
+  };
 
 
+    // const handleLogin = () => {
+    //     const  res = axios.post("http://localhost:8080/login", {
+    //     userId: rollNo
+    //     if (loginType === "Student") {
+    //         navigate("/Dashboard", { state: { Data } });
+    //     } else {
+    //         navigate("/FacultyDashboard", { state: { Data } });
+    //     }
+    // };
 
+    
     return (
         <div className="login-page">
             <div className="login-container">
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit}>
-
-                    <label htmlFor="rollNo" id="rollNoLabel" className="input-label">{loginType} ID</label>
+                    <label htmlFor="userId" id="userIdLabel" className="input-label">User ID</label>
                     <input
                         autoComplete="off"
                         id="rollNo"
-                        className="inpexut-box"
+                        className="input-box"
                         type="text"
-                        value={rollNo}
-                        max-length={11}
-                        onChange={(e) => setRollNo(checkNumberType(e.target.value))}
-                        placeholder="Enter your ID No">
-                    </input>
+                        value={userId}
+                        maxLength={11}
+                        onChange={(e) => setUserId(checkNumberType(e.target.value))}
+                        placeholder="Enter your ID No"
+                    />
 
-                    <label htmlFor="password" id="password" className="input-label">Password</label>
+                    <label htmlFor="password" id="passwordLabel" className="input-label">Password</label>
                     <input
                         autoComplete="off"
-                        htmlFor="password"
                         id="password"
                         className="input-box"
                         type="password"
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                    >
-                    </input>
-                    <button type="submit" onClick={handleLogin} className="Login-Button">Login</button>
-                    {/* <p>Want to change password ?<Link  to="/signUp">Change Password </Link></p> */}
+                        placeholder="Enter your password"
+                    />
 
-
-                </form >
+                    <button type="submit" className="Login-Button">Login</button>
+                </form>
             </div>
         </div>
-
-
     );
-}
+};
+
 export default LoginPage;
