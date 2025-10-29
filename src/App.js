@@ -30,7 +30,7 @@ const FacultyDetails={
       <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails} setClassDetails={setClassDetails} />}/>
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/" element={<LoginPage />}/> 
-      <Route path="markAttendance" element={<MarkAttendance />}/>
+      <Route path="/markAttendance" element={<MarkAttendance />}/>
     </Routes>
     </BrowserRouter>
     
