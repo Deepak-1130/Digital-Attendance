@@ -28,8 +28,8 @@ const LoginPage = () => {
       } else if (Data.role === "Faculty") {
         navigate("/FacultyDashboard", { state: { Data } });
       } 
-      else if (Data.role === "HOD"){
-        navigate("/HODDashboard", { state: { Data } });
+      else if (Data.role === "admin"){
+        navigate("/admin", { state: { Data } });
       }
         else {
         alert("Invalid user role!");

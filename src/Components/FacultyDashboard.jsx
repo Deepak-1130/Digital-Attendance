@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../StyleSheets/FacultyDashboard.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const TeacherDashboard = ({ setClassDetails }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const Data = location.state?.Data;
   const facultyId = Data?.userId;
 
@@ -25,13 +27,14 @@ const TeacherDashboard = ({ setClassDetails }) => {
         const res = await axios.get(`http://localhost:8080/getfaculty/${facultyId}`);
         setFacultyDetails(res.data);
 
+        // Split handling papers (comma separated)
         if (res.data.handlingPaper) {
           const papers = res.data.handlingPaper.split(",").map((p) => p.trim());
           setHandlingPapers(papers);
         }
       } catch (err) {
         console.error("Error fetching faculty details:", err);
-        setError("Failed to load faculty details. Please try again later.");
+        setError("Failed to load faculty details.");
       } finally {
         setLoading(false);
       }
@@ -40,30 +43,47 @@ const TeacherDashboard = ({ setClassDetails }) => {
     fetchFaculty();
   }, [facultyId]);
 
-  if (loading) {
-    return (
-      <div className="loading-screen">
-        <div className="loader"></div>
-        <p>Loading faculty dashboard...</p>
-      </div>
-    );
-  }
+  // 👉 Function to fetch subject and send classId
+  const handlePaperClick = async (paper) => {
+  try {
+    const res = await axios.get(`http://localhost:8080/getSubject/${paper}`);
+    const subjectData = res.data;
 
-  if (error) {
-    return <p className="error-msg">{error}</p>;
+    // Extract properly from the response you gave
+    const classId = subjectData.classes?.classId;
+    const subjectCode = paper;
+
+    if (!classId) {
+      alert("Class ID not found for this subject.");
+      return;
+    }
+
+    // Navigate to MarkAttendance and pass both classId & subjectCode
+    navigate("/markAttendance", {
+      state: { classId: classId, subjectCode: subjectCode }
+    });
+
+  } catch (err) {
+    console.error("Error fetching subject details:", err);
+    alert("Failed to fetch subject details.");
   }
+};
+
+
+  if (loading) return <p>Loading faculty dashboard...</p>;
+  if (error) return <p className="error-msg">{error}</p>;
 
   return (
     <div className="faculty-dashboard-fullpage">
       <header className="faculty-header">
-        <h1> Faculty Dashboard</h1>
+        <h1> Faculty Dashboard </h1>
         <h2>{facultyDetails?.name}</h2>
         <p>{facultyDetails?.designation} | {facultyDetails?.department}</p>
       </header>
 
       <main className="faculty-main">
         <section className="faculty-info">
-          <h3> Faculty Details</h3>
+          <h3>Faculty Details</h3>
           <div className="info-grid">
             <p><strong>ID:</strong> {facultyDetails?.facultyId}</p>
             <p><strong>Faculty Of:</strong> {facultyDetails?.facultyOf}</p>
@@ -73,14 +93,14 @@ const TeacherDashboard = ({ setClassDetails }) => {
         </section>
 
         <section className="faculty-papers">
-          <h3> Handling Papers</h3>
+          <h3>Handling Papers</h3>
           <div className="paper-btns">
             {handlingPapers.length > 0 ? (
               handlingPapers.map((paper, index) => (
                 <button
                   key={index}
                   className="paper-button"
-                  onClick={() => setClassDetails(paper)}
+                  onClick={() => handlePaperClick(paper)}
                 >
                   {paper}
                 </button>
@@ -92,9 +112,7 @@ const TeacherDashboard = ({ setClassDetails }) => {
         </section>
       </main>
 
-      <footer className="faculty-footer">
-        <p>© 2025 Faculty Portal | Developed by Deepak</p>
-      </footer>
+      
     </div>
   );
 };

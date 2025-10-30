@@ -1,243 +1,104 @@
-// ...existing code...
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../StyleSheets/admin.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../StyleSheets/admin.css";   // ✅ Add this stylesheet
 
-const AdminDashboard = () => {
-  const navigate = useNavigate();
+function AdminDashboard() {
 
-  // static sample data - replace with real data later if needed
-  const students = [
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-     { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-     { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    { id: 1, name: 'Aarav Kumar', year: 'First' },
-    { id: 2, name: 'Bhavya R', year: 'Second' },
-    { id: 3, name: 'Chitra S', year: 'Third' },
-    { id: 4, name: 'Dev Patel', year: 'Final' },
-    { id: 5, name: 'Esha N', year: 'First' },
-    { id: 6, name: 'Farhan A', year: 'Second' },
-    
-  ];
+  const [counts, setCounts] = useState({
+    year1: null,
+    year2: null,
+    year3: null,
+    year4: null
+  });
 
-  const staff = [
-    { id: 1, name: 'Prof. Ramesh', designation: 'Professor', subjects: ['22CSC33', '22CSC54'] },
-    { id: 2, name: 'Dr. Sneha', designation: 'Assistant Professor', subjects: ['22CSC41', '22CSC53'] },
-    { id: 3, name: 'Mr. Kiran', designation: 'Lecturer', subjects: ['22CSC31', '22CSC52'] },
-        { id: 4, name: 'Mr. Ram', designation: 'Lecturer', subjects: ['22CSC34', '22CSC55'] },
-  ];
+  const [facultyList, setFacultyList] = useState([]);
 
-  const yearCounts = students.reduce((acc, s) => {
-    acc[s.year] = (acc[s.year] || 0) + 1;
-    return acc;
-  }, {});
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const res1 = await axios.get("http://localhost:8080/getCountOfStudents/1");
+        const res2 = await axios.get("http://localhost:8080/getCountOfStudents/2");
+        const res3 = await axios.get("http://localhost:8080/getCountOfStudents/3");
+        const res4 = await axios.get("http://localhost:8080/getCountOfStudents/4");
 
-  // navigate to attendance page for selected year
-  const goToAttendance = (year) => {
-    // navigate with query param; adjust route if your attendance component expects different params
-    navigate(`/markAttendance?year=${encodeURIComponent(year)}`);
-  };
+        setCounts({
+          year1: res1.data,
+          year2: res2.data,
+          year3: res3.data,
+          year4: res4.data
+        });
+      } catch (error) {
+        console.error("Error fetching student counts:", error);
+      }
+    };
+
+    const fetchFaculty = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/getAllFaculty");
+        setFacultyList(res.data);
+      } catch (error) {
+        console.error("Error fetching faculty:", error);
+      }
+    };
+
+    fetchCounts();
+    fetchFaculty();
+  }, []);
 
   return (
-    <div className="admin-dashboard">
-      <header className="admin-header">
-        <h1>Admin Dashboard</h1>
-      </header>
+    <div className="admin-container">
 
-      <div className="dashboard-sections">
-        <section className="card">
-          <div className="card-title">
-            <h2>Overview</h2>
-            <span className="count-badge">{students.length + staff.length}</span>
-          </div>
+      <h2 className="dashboard-title">Admin Dashboard</h2>
 
-          <div className="stats-grid">
-            <div className="stat">
-              <div className="stat-label">Total Students</div>
-              <div className="stat-value">{students.length}</div>
-            </div>
-            <div className="stat">
-              <div className="stat-label">Total Staff</div>
-              <div className="stat-value">{staff.length}</div>
-            </div>
-          </div>
+      <div className="cards-container">
+        <div className="info-card">
+          <h3>1st Year</h3>
+          <p>{counts.year1 ?? "..."}</p>
+        </div>
+        <div className="info-card">
+          <h3>2nd Year</h3>
+          <p>{counts.year2 ?? "..."}</p>
+        </div>
+        <div className="info-card">
+          <h3>3rd Year</h3>
+          <p>{counts.year3 ?? "..."}</p>
+        </div>
+        <div className="info-card">
+          <h3>4th Year</h3>
+          <p>{counts.year4 ?? "..."}</p>
+        </div>
+      </div>
 
-          <div className="divider" />
+      <h3 className="faculty-title">Faculty List</h3>
 
-          <div className="year-counts">
-            <h3 className="subheading">Students</h3>
-            <ul className="year-list">
-              <li className="year-row">
-                <span>First Year</span>
-                <div>
-                  <strong className="year-count">{yearCounts['First'] || 0}</strong>
-                  <button
-                    className="year-button"
-                    onClick={() => goToAttendance('First')}
-                    aria-label="Go to First year attendance"
-                  >
-                    click
-                  </button>
-                </div>
-              </li>
-
-              <li className="year-row">
-                <span>Second Year</span>
-                <div>
-                  <strong className="year-count">{yearCounts['Second'] || 0}</strong>
-                  <button
-                    className="year-button"
-                    onClick={() => goToAttendance('Second')}
-                    aria-label="Go to Second year attendance"
-                  >
-                    click
-                  </button>
-                </div>
-              </li>
-
-              <li className="year-row">
-                <span>Third Year</span>
-                <div>
-                  <strong className="year-count">{yearCounts['Third'] || 0}</strong>
-                  <button
-                    className="year-button"
-                    onClick={() => goToAttendance('Third')}
-                    aria-label="Go to Third year attendance"
-                  >
-                    click
-                  </button>
-                </div>
-              </li>
-
-              <li className="year-row">
-                <span>Final Year</span>
-                <div>
-                  <strong className="year-count">{yearCounts['Final'] || 0}</strong>
-                  <button
-                    className="year-button"
-                    onClick={() => goToAttendance('Final')}
-                    aria-label="Go to Final year attendance"
-                  >
-                    click
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="card">
-          <div className="card-title">
-            <h2>Staff Details</h2>
-            <span className="count-badge">{staff.length}</span>
-          </div>
-
-          <ul className="user-list">
-            {staff.map(member => (
-              <li key={member.id} className="user-item">
-                <span className="avatar">
-                  {member.name
-                    ? member.name.split(' ').map(n => n[0]).slice(0,2).join('').toUpperCase()
-                    : '?'}
-                </span>
-
-                <div className="user-info">
-                  <div className="user-name">{member.name}</div>
-                  <div className="user-email">{member.designation}</div>
-                  <div className="subjects">
-                    <small>Subjects: {member.subjects.join(', ')}</small>
-                  </div>
-                </div>
-              </li>
+      <div className="table-wrapper">
+        <table className="faculty-table">
+          <thead>
+            <tr>
+              <th>Faculty ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Handling Paper</th>
+              <th>Designation</th>
+              <th>Mobile</th>
+            </tr>
+          </thead>
+          <tbody>
+            {facultyList.map((f, index) => (
+              <tr key={index}>
+                <td>{f.facultyId}</td>
+                <td>{f.name}</td>
+                <td>{f.department}</td>
+                <td>{f.handlingPaper}</td>
+                <td>{f.designation}</td>
+                <td>{f.mobileNo}</td>
+              </tr>
             ))}
-          </ul>
-
-          <div className="divider" />
-          {/* removed staff-by-designation section as requested */}
-        </section>
+          </tbody>
+        </table>
       </div>
     </div>
   );
-};
+}
 
 export default AdminDashboard;
-// ...existing code...

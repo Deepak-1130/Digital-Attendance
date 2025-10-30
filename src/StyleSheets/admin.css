@@ -1,279 +1,76 @@
-:root {
-    --bg: #f0f4f8;  /* Lighter blue-gray background */
-    --card: #ffffff;
-    --muted: #64748b;
-    --text: #1e293b;
-    --accent: #3b82f6;  /* Brighter blue */
-    --soft-accent: #f0f7ff;
-    --divider: #e2e8f0;
-    --shadow: rgba(15,20,30,0.08);
-    --radius: 12px;
-    --glass: rgba(59,130,246,0.04);
-    --hover: #2563eb;
+.admin-container {
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Update existing styles */
-.admin-dashboard {
-    max-width: 1300px;  /* Increased max-width */
-    margin: 32px auto;
-    padding: 28px;
-    background: var(--bg);
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
 }
 
-.dashboard-sections {
-    display: grid;
-    grid-template-columns: 1fr 1fr;  /* Equal width columns */
-    gap: 32px;  /* Increased gap between cards */
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
-.card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: 0 8px 24px var(--shadow);
-    padding: 24px;
-    transition: transform 0.2s ease;
+.info-card {
+  background: #ffffff;
+  padding: 20px;
+  width: 200px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-2px);
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 5px 14px rgba(0,0,0,0.15);
 }
 
-/* Stats styling */
-.stats-grid {
-    gap: 20px;
-    margin: 24px 0;
+.info-card h3 {
+  font-size: 18px;
+  color: #2e86de;
 }
 
-.stat {
-    background: var(--soft-accent);
-    padding: 16px;
-    border-radius: var(--radius);
-    border: 1px solid rgba(59,130,246,0.1);
+.info-card p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 8px;
 }
 
-.stat-value {
-    color: var(--accent);
-    font-size: 28px;
+.faculty-title {
+  font-size: 22px;
+  margin-bottom: 15px;
 }
 
-/* Year buttons */
-.year-button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+.table-wrapper {
+  overflow-x: auto;
 }
 
-.year-button:hover {
-    background: var(--hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+.faculty-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Staff list updates */
-.user-item {
-    background: var(--soft-accent);
-    padding: 16px;
-    margin: 8px 0;
-    border-radius: var(--radius);
-    border: 1px solid rgba(59,130,246,0.1);
+.faculty-table th {
+  background: #2e86de;
+  color: white;
+  padding: 12px;
+  text-align: left;
 }
 
-.avatar {
-    background: linear-gradient(135deg, #bfdbfe, #93c5fd);
-    color: var(--accent);
-    width: 52px;
-    height: 52px;
+.faculty-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Count badge update */
-.count-badge {
-    background: var(--accent);
-    padding: 8px 16px;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(59,130,246,0.2);
+.faculty-table tr:hover {
+  background: #f5f9ff;
 }
-
-/* Responsive update */
-@media (max-width: 1100px) {
-    .dashboard-sections {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-    
-    .admin-dashboard {
-        padding: 16px;
-    }
-}
-
-/* Add smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-/* ...existing code... */
-
-/* Year counts styling */
-.year-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.year-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    margin: 8px 0;
-    background: var(--soft-accent);
-    border-radius: var(--radius);
-    border: 1px solid rgba(59,130,246,0.1);
-    transition: all 0.2s ease;
-}
-
-.year-row:hover {
-    background: #e8f2ff;
-    transform: translateY(-1px);
-}
-
-.year-label {
-    font-weight: 500;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.year-count {
-    background: var(--accent);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.year-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* Remove the overview total count badge */
-.card-title .count-badge {
-    display: none;
-}
-
-/* Stats updates */
-.stats-grid {
-    display: flex;
-    gap: 16px;
-    margin: 16px 0;
-}
-
-.stat {
-    flex: 1;
-    text-align: center;
-    padding: 20px;
-}
-
-.stat-label {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 8px;
-}
-
-.stat-value {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--accent);
-}
-/* ...existing code... */
-
-.year-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    margin: 8px 0;
-    background: var(--soft-accent);
-    border-radius: var(--radius);
-    border: 1px solid rgba(59,130,246,0.1);
-    transition: all 0.2s ease;
-}
-
-.year-label {
-    font-weight: 500;
-    color: var(--text);
-}
-
-.year-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.year-count {
-    margin-right: 12px;
-    background: var(--accent);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-/* Updated button styles */
-.year-button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    min-width: 80px; /* Ensure consistent button width */
-}
-/* ...existing code... */
-
-.avatar {
-    background: linear-gradient(135deg, #bfdbfe, #93c5fd);
-    color: var(--accent);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;  /* Makes it perfectly round */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 600;
-    border: 2px solid rgba(59,130,246,0.2);
-    box-shadow: 0 2px 8px rgba(59,130,246,0.1);
-    transition: all 0.2s ease;
-}
-
-.avatar:hover {
-    transform: scale(1.05);
-    border-color: var(--accent);
-    box-shadow: 0 4px 12px rgba(59,130,246,0.2);
-}
-
-/* Ensure the user item layout works well with round avatar */
-.user-item {
-    background: var(--soft-accent);
-    padding: 16px;
-    margin: 8px 0;
-    border-radius: var(--radius);
-    border: 1px solid rgba(59,130,246,0.1);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-/* ...existing code... */
