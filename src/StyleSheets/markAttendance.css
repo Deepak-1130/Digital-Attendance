@@ -1,68 +1,42 @@
 .mark-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+  color: #333;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #2d3748;
 }
 
-.paper-details {
-  background: #f4f6ff;
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #4b6cff;
-  margin-bottom: 20px;
+.sub-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 25px;
+  color: #4a5568;
 }
 
-.students-title {
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-
-.student-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin: 12px 0;
-  border-radius: 8px;
-  background: #ffffff;
-  transition: 0.3s;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.student-card:hover {
-  transform: translateY(-3px);
-}
-
-.load-btn,
-.present-btn,
-.absent-btn {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
+.sub-title span {
+  color: #2b6cb0;
   font-weight: 600;
 }
 
-.load-btn {
-  background: #444;
-  color: white;
-  margin-bottom: 10px;
+.loading {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 40px;
 }
 
-.button-row {
-  margin-top: 8px;
-}
-
-.present-btn {
-  background: green;
-  color: white;
-  margin-right: 10px;
-}
-
-.absent-btn {
-  background: red;
-  color: white;
+/* 🟩 Card Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  padding: 10px;
 }

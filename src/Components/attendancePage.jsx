@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import StudentAttendanceCard from "../Components/attendanceCard"; // ✅ IMPORT CARD
+import StudentAttendanceCard from "./attendanceRow"; 
 import "../StyleSheets/markAttendance.css";
 
 const MarkAttendance = () => {
@@ -20,7 +20,7 @@ const MarkAttendance = () => {
         const res = await axios.get(`http://localhost:8080/getStudentByClass/${classId}`);
         console.log("API Response:", res);
         setStudents(res.data);
-        console.log("Fetched Students:", res.data);
+        
       } catch (err) {
         console.error("Error fetching students:", err);
       }
@@ -31,22 +31,27 @@ const MarkAttendance = () => {
   }, [classId]);
 
   return (
+    
     <div className="mark-container">
-      <h1 className="title">Mark Attendance</h1>
+      <div className="attendanceData">
+       
+              <h1 className="title">Mark Attendance</h1>
       <h2 className="students-title">Subject Code: {subjectCode}</h2>
 
       {students.length === 0 ? (
         <p>Loading students...</p>
       ) : (
-        students.map((stu) => (
+        students.map((student) => (
           <StudentAttendanceCard
-            key={stu.rollNo}
-            studentId={stu.rollNo}     // ✅ rollNo → studentId expected by card
-            subjectCode={subjectCode}  // ✅ pass same subject
+            key={student.rollNo}
+            studentId={student.rollNo}     
+            subjectCode={subjectCode} 
           />
         ))
       )}
     </div>
+    </div>
+
   );
 };
 

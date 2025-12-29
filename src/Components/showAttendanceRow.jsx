@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../StyleSheets/studentCard.css";
+import "../StyleSheets/attendanceRow.css";
 
-const StudentAttendanceCard = ({ studentId, subjectCode }) => {
+const ShowAttendanceRow = ({ studentId, subjectCode }) => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [attendance,setAttendance]=useState(true);
@@ -31,9 +31,7 @@ const StudentAttendanceCard = ({ studentId, subjectCode }) => {
       await axios.post(
         `http://localhost:8080/markAttendance?studentId=${studentId}&subjectCode=${subjectCode}&present=${present}`
       );
-      alert(`Marked as ${present ? "Present" : "Absent"}`);
 
-      // Refresh data after marking attendance
       const res = await axios.get(
         `http://localhost:8080/getAttendance/student/${studentId}/subject/${subjectCode}`
       );
@@ -57,18 +55,10 @@ return (
     <span className="s-present">Present: {student.presentCount}</span>
     <span className="s-percent">{student.attendancePercentage}%</span>
 
-     {attendance?(<div className="btn-group">
-        <button className="present-btn" onClick={() => handleAttendance(true)}>
-          Present
-        </button>
-
-        <button className="absent-btn" onClick={() => handleAttendance(false)}>
-          Absent
-        </button>
-      </div>):<div></div>}
+     
   </div>
 );
 
 };
 
-export default StudentAttendanceCard;
+export default ShowAttendanceRow;

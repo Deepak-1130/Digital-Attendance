@@ -4,9 +4,10 @@ import LoginPage from "./Components/loginPage";
 import { useState } from "react";
 import Home from "./Components/home";
 import Dashboard from "./Components/Dashboard";
-import MarkAttendance from "./Components/attendanceTable";
+import MarkAttendance from "./Components/attendancePage";
 import FacultyDashboard from "./Components/FacultyDashboard";
 import AdminDashboard from "./Components/admin";
+import ShowAttendance from './Components/showAttendance';
 function App() {
   const studentDetails={
     name:"Deepak",
@@ -28,6 +29,7 @@ const FacultyDetails={
   return (
     <BrowserRouter>
     <Routes>
+      <Route path="/getAttendance" element={<ShowAttendance/>}/>
       <Route path="/FacultyDashboard" element={<FacultyDashboard FacultyDetails={FacultyDetails} setClassDetails={setClassDetails} />}/>
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/" element={<LoginPage />}/> 

@@ -4,16 +4,18 @@ import "../StyleSheets/loginPage.css";
 import axios from "axios";
 
 const LoginPage = () => {
-    const [userId, setUserId] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-   const checkNumberType = (value) => {
-        const regex = /^[A-Za-z]+/;
-      return value.replace(regex, ''); 
-    }
-    const handleSubmit = async (e) => {
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const checkNumberType = (value) => {
+    const regex = /^[A-Za-z]+/;
+    return value.replace(regex, "");
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const res = await axios.post("http://localhost:8080/login", {
         userId: userId,
@@ -22,71 +24,59 @@ const LoginPage = () => {
 
       const Data = res.data;
 
-      
       if (Data.role === "Student") {
         navigate("/Dashboard", { state: { Data } });
-      } else if (Data.role === "Faculty") {
+      } else if (Data.role === "faculty") {
         navigate("/FacultyDashboard", { state: { Data } });
-      } 
-      else if (Data.role === "admin"){
+      } else if (Data.role === "admin") {
         navigate("/admin", { state: { Data } });
-      }
-        else {
+      } else {
         alert("Invalid user role!");
       }
-
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed! Please check your credentials or server.");
     }
   };
 
+  return (
+    <div className="login-page">
 
-    // const handleLogin = () => {
-    //     const  res = axios.post("http://localhost:8080/login", {
-    //     userId: rollNo
-    //     if (loginType === "Student") {
-    //         navigate("/Dashboard", { state: { Data } });
-    //     } else {
-    //         navigate("/FacultyDashboard", { state: { Data } });
-    //     }
-    // };
+     
+      <div className="login-header">
+        <h2>College Attendance Portal</h2>
+      </div>
 
-    
-    return (
-        <div className="login-page">
-            <div className="login-container">
-                <h1>Login</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="userId" id="userIdLabel" className="input-label">User ID</label>
-                    <input
-                        autoComplete="off"
-                        id="rollNo"
-                        className="input-box"
-                        type="text"
-                        value={userId}
-                        maxLength={11}
-                        onChange={(e) => setUserId(checkNumberType(e.target.value))}
-                        placeholder="Enter your ID No"
-                    />
+      <div className="login-container">
+        <h1>Login</h1>
 
-                    <label htmlFor="password" id="passwordLabel" className="input-label">Password</label>
-                    <input
-                        autoComplete="off"
-                        id="password"
-                        className="input-box"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter your password"
-                    />
+        <form onSubmit={handleSubmit}>
+          <label className="input-label">User ID</label>
+          <input
+            autoComplete="off"
+            className="input-box"
+            type="text"
+            value={userId}
+            maxLength={11}
+            onChange={(e) => setUserId(checkNumberType(e.target.value))}
+            placeholder="Enter your ID No"
+          />
 
-                    <button type="submit" className="Login-Button">Login</button>
-                </form>
-            </div>
-        </div>
-    );
+          <label className="input-label">Password</label>
+          <input
+            autoComplete="off"
+            className="input-box"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+
+          <button type="submit" className="Login-Button">Login</button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default LoginPage;

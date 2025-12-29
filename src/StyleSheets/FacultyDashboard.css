@@ -1,155 +1,99 @@
-/* Fullpage Layout */
-.faculty-dashboard-fullpage {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(to bottom right, #e9edf2, #cfd8dc);
-  color: #2e2e2e;
+
+.faculty-dashboard {
+  min-height: 100vh;
+  background-color: #f4f6f9;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Header */
-.faculty-header {
-  background: #34495e; /* Deep slate blue */
+
+.faculty-dashboard-header {
+  background-color: cornflowerblue;
+  padding: 1.5rem 2rem;
+  border-radius: 0 0 12px 12px;
+}
+
+.faculty-dashboard-header h1 {
   color: #ffffff;
-  text-align: center;
-  padding: 30px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  border-bottom: 4px solid #e74c3c; /* Accent red underline */
-}
-
-.faculty-header h1 {
-  font-size: 32px;
   margin: 0;
-  letter-spacing: 1px;
 }
 
-.faculty-header h2 {
-  font-size: 24px;
-  margin-top: 8px;
+.faculty-dashboard-header h3 {
+  margin-top: 0.5rem;
+  color: #f0f0f0;
+  font-weight: 400;
 }
 
-.faculty-header p {
-  color: #dcdcdc;
-  font-style: italic;
+
+.faculty-dashboard-body {
+  padding: 2rem;
 }
 
-/* Main Body */
-.faculty-main {
-  flex: 1;
+.faculty-dashboard-body h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.papercontainer {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  padding: 30px 10%;
+  justify-content: space-between;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Faculty Info Section */
-.faculty-info {
-  background: #ffffff;
-  border: 1px solid #b0bec5;
-  border-radius: 12px;
-  padding: 25px 40px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 80%;
-}
-
-.faculty-info h3 {
-  color: #2c3e50;
-  border-bottom: 3px solid #3498db; /* Bright blue line */
-  padding-bottom: 6px;
-  margin-bottom: 15px;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px 25px;
-  font-size: 16px;
-  color: #37474f;
-}
-
-/* Papers Section */
-.faculty-papers {
-  background: #ffffff;
-  border: 1px solid #b0bec5;
-  border-radius: 12px;
-  padding: 25px 40px;
-  width: 80%;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.faculty-papers h3 {
-  color: #2c3e50;
-  border-bottom: 3px solid #e74c3c; /* Red underline */
-  padding-bottom: 6px;
-  margin-bottom: 20px;
-}
-
-.paper-btns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-}
-
-.paper-button {
-  background: #3498db; /* Blue button */
-  color: #fff;
-  border: none;
-  padding: 14px 28px;
-  font-size: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-weight: 500;
-}
-
-.paper-button:hover {
-  background: #e74c3c; /* Turn red on hover */
+.papercontainer:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* Footer */
-.faculty-footer {
-  background: #2c3e50;
-  color: #fff;
+.handling-papers {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a3d7c;
+}
+
+.papercontainer button {
+  background-color: cornflowerblue;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.papercontainer button:hover {
+  background-color: #4169e1;
+}
+
+.loading {
   text-align: center;
-  padding: 15px 0;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  border-top: 3px solid #3498db;
-}
-
-/* Loading + Error */
-.loading-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.loader {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3498db;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 15px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  margin-top: 3rem;
+  font-size: 1.2rem;
 }
 
 .error-msg {
-  color: #e74c3c;
   text-align: center;
-  padding: 20px;
-  font-weight: bold;
+  margin-top: 3rem;
+  color: red;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .papercontainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .papercontainer button {
+    width: 100%;
+  }
 }

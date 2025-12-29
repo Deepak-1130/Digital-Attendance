@@ -1,139 +1,138 @@
-/* Font and base setup */
-body {
-  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
-  background: #f0f2f5;
+/* Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.dashboard {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
+/* Body */
+body {
+  background-color: rgba(182, 182, 186, 0.252);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Header */
+/* ================= HEADER ================= */
 .dashboard-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.dashboard-header h1 {
-  font-size: 2rem;
-  color: #1a1a1a;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.subtitle {
-  color: #555;
-  margin-top: 8px;
-  font-size: 1rem;
-}
-
-/* Content */
-.dashboard-content {
+  background-color: #ffffff;
+  color: #000000;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
   display: flex;
-  gap: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
-  max-width: 900px;
 }
 
-.card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 25px 30px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 400px;
+.studentdata {
+  font-size: 18px;
+  color: #555555;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.card h2 {
-  font-size: 1.3rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-
-.card p {
-  font-size: 0.95rem;
-  color: #333;
-  margin: 6px 0;
-}
-
-/* Attendance colors */
-.attendance-value.green {
-  color: #27ae60;
-  font-weight: 600;
-}
-
-.attendance-value.yellow {
-  color: #f1c40f;
-  font-weight: 600;
-}
-
-.attendance-value.red {
-  color: #e74c3c;
-  font-weight: 600;
-}
-
-/* Progress bar */
-.progress-bar {
-  background-color: #e4e6eb;
-  border-radius: 10px;
-  height: 10px;
-  overflow: hidden;
-  margin-top: 12px;
-}
-
-.progress-fill {
-  height: 10px;
-  border-radius: 10px;
-  transition: width 0.6s ease;
-}
-
-.progress-fill.green {
-  background-color: #27ae60;
-}
-
-.progress-fill.yellow {
-  background-color: #f1c40f;
-}
-
-.progress-fill.red {
-  background-color: #e74c3c;
-}
-
-/* Footer */
-.dashboard-footer {
-  margin-top: 50px;
+.studentName {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333333;
 }
 
 .logout-btn {
-  background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
+  background-color: #ff4d4d;
   color: white;
   border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  letter-spacing: 0.4px;
-  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.logout-btn:hover {
-  background: linear-gradient(90deg, #003c9e, #3659e3, #5d9ffb);
-  transform: translateY(-2px);
+/* ================= ATTENDANCE SECTION ================= */
+.attendance-section {
+  margin: 1%;
+  padding: 1%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-/* Loading screen */
+.attendance-section h2 {
+  margin-bottom: 10px;
+  color: #333333;
+}
 
+/* ================= CARDS ================= */
+.attendance-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: fit-content;
+}
+
+.attendance-card {
+  background: linear-gradient(145deg, #0d336d, #0f5aa6);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 220px;
+  min-width: 180px;
+  height: auto;
+  margin: 10px;
+}
+
+/* Card Text */
+.attendance-card p {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: bold;
+  color: white;
+}
+
+.attendance-card h4 {
+  font-size: clamp(16px, 3vw, 22px);
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* ================= DASHBOARD CONTENT ================= */
+.dashboard-content {
+  width: 100%;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logout-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .attendance-container {
+    justify-content: center;
+  }
+
+  .attendance-card {
+    width: 100%;
+  }
+
+  .studentName {
+    font-size: 18px;
+  }
+
+  .studentdata {
+    font-size: 14px;
+  }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 900px) {
+  .attendance-card {
+    width: 45%;
+  }
+}
