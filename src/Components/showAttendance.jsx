@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import ShowAttendanceRow from "./showAttendanceRow"; 
-import "../StyleSheets/markAttendance.css";
+import "../StyleSheets/attendancePage.css";
 
 const ShowAttendance = () => {
   const location = useLocation();

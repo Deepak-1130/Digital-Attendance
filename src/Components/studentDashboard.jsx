@@ -14,7 +14,6 @@ const Dashboard = () => {
 
   const studentId = Data?.userId;
 
-  // Fetch student details + attendance
   useEffect(() => {
     if (!studentId) {
       setError("No student ID found. Please log in again.");
@@ -42,7 +41,6 @@ const Dashboard = () => {
     fetchData();
   }, [studentId]);
 
-  // Color logic
   const getColorClass = (percentage) => {
     const value = parseFloat(percentage);
     if (value >= 90) return "green";

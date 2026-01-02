@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./Components/loginPage";
 import { useState } from "react";
 import Home from "./Components/home";
-import Dashboard from "./Components/Dashboard";
+import Dashboard from "./Components/studentDashboard";
 import MarkAttendance from "./Components/attendancePage";
 import FacultyDashboard from "./Components/FacultyDashboard";
-import AdminDashboard from "./Components/admin";
+import AdminDashboard from "./Components/adminDashboard";
 import ShowAttendance from './Components/showAttendance';
 function App() {
   const studentDetails={
